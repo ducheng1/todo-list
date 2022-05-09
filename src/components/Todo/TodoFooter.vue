@@ -8,15 +8,28 @@
 </template>
 
 <script>
+import {useStore} from "vuex";
+import store from "@/store";
+
 export default {
     name: 'navFooter',
     data() {
         return {
-            completed: 1,
-            all: 3,
+            completed: store.state.completedNum,
+            all: store.state.todoList.length,
             haveQuestCompleted: true
         }
-    }
+    },
+    setup() {
+        const store = useStore();
+        let list = store.state.todoList;
+        for (let i = 0; i < list.length; i++) {
+            if (list[i].completed)
+                store.state.completedNum++;
+        }
+        // console.log(store.state.todoList.length)
+        return list;
+    },
 }
 </script>
 

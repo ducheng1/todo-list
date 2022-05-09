@@ -4,14 +4,11 @@ export default createStore({
     state: {
         todoList: [
             {
-                title: '吃饭',
-                completed: false
-            },
-            {
-                title: '睡觉',
+                title: '此处显示你的待办项',
                 completed: false
             }
-        ]
+        ],
+        completedNum: 0
     },
     getters: {},
     mutations: {},

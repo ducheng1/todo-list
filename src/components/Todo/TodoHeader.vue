@@ -2,7 +2,7 @@
     <div id="container">
         <el-row>
             <el-col :span="20">
-                <el-input placeholder="请输入任务名称" type="text" v-model="list.title" id="todo-item"/>
+                <el-input placeholder="此处输入你的待办项" type="text" v-model="list.title" id="todo-item"/>
             </el-col>
             <el-col :span="4">
                 <el-button type="primary" @click="insert">添加</el-button>
@@ -13,6 +13,7 @@
 
 <script>
 import store from "@/store";
+import {ElNotification} from "element-plus";
 
 export default {
     name: 'navHeader',
@@ -27,7 +28,11 @@ export default {
     methods: {
         insert() {
             if (this.list.title === "") {
-
+                ElNotification({
+                    title: "待办项不能为空",
+                    message: "请重新输入",
+                    type: "warning"
+                });
                 return;
             }
             store.state.todoList.push(this.list);
