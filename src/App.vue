@@ -1,23 +1,35 @@
 <template>
     <el-container>
-        <el-header></el-header>
+        <el-header>
+            <van-notice-bar
+                mode="closeable"
+                left-icon="volume-o"
+                speed="60"
+                text="我也不知道说点什么，这一条消息通知栏只是拿来凑数的。"
+            />
+        </el-header>
         <el-main>
             <router-view/>
         </el-main>
         <el-footer>
-            <van-tabbar v-model="active">
-                <van-tabbar-item icon="certificate">
-                    <router-link to="/">Todo</router-link>
+            <van-tabbar v-model="active" route>
+                <!--todolist-->
+                <van-tabbar-item replace to="/" name="todo" icon="certificate">
+                    Todo
                 </van-tabbar-item>
-                <van-tabbar-item icon="descending">
-                    <router-link to="/countdown">Countdown</router-link>
+                <!--countdown-->
+                <van-tabbar-item replace to="/countdown" name="countdown" icon="descending">
+                    Countdown
                 </van-tabbar-item>
-                <van-tabbar-item icon="contact">
-                    <router-link to="/user">User</router-link>
+                <!--user login and register-->
+                <van-tabbar-item replace to="/user" name="user" icon="contact">
+                    User
                 </van-tabbar-item>
-                <van-tabbar-item icon="info-o">
-                    <router-link to="/about">About</router-link>
+                <!--about me-->
+                <van-tabbar-item replace to="/about" name="about" icon="info-o">
+                    About
                 </van-tabbar-item>
+
             </van-tabbar>
 
         </el-footer>
@@ -25,18 +37,17 @@
 </template>
 
 <script>
+import {ref} from "vue";
+
 export default {
     data() {
         return {
-            active: true
+            active: ref('todo')
         }
     },
 }
 </script>
 
-<style>
-* {
-    margin: 0 auto;
-    text-align: center;
-}
+<style scoped>
+
 </style>
