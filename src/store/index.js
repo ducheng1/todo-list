@@ -1,14 +1,20 @@
-import { createStore } from 'vuex'
+import {createStore} from 'vuex'
 
 export default createStore({
-  state: {
-  },
-  getters: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
-  modules: {
-  }
+    state: {
+        todoList: [
+            {
+                title: '吃饭',
+                completed: false
+            },
+            {
+                title: '睡觉',
+                completed: false
+            }
+        ]
+    },
+    getters: {},
+    mutations: {},
+    actions: {},
+    modules: {}
 })
