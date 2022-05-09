@@ -1,6 +1,6 @@
 <template>
     <div id="container">
-        about
+        user
     </div>
 </template>
 
