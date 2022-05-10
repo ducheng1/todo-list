@@ -42,7 +42,7 @@ import {ref} from "vue";
 export default {
     data() {
         return {
-            active: ref('todo')
+            active: ref('todo'),
         }
     },
 }

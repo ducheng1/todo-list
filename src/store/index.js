@@ -1,4 +1,5 @@
 import {createStore} from 'vuex'
+// vuex持久化存储
 
 export default createStore({
     state: {
@@ -10,8 +11,4 @@ export default createStore({
         ],
         completedNum: 0
     },
-    getters: {},
-    mutations: {},
-    actions: {},
-    modules: {}
 })

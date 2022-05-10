@@ -27,6 +27,7 @@ export default {
     },
     methods: {
         insert() {
+            // 判断待办项是否为空
             if (this.list.title === "") {
                 ElNotification({
                     title: "待办项不能为空",
@@ -35,7 +36,11 @@ export default {
                 });
                 return;
             }
-            store.state.todoList.push(this.list);
+            const todoList = store.state.todoList;
+            // 避免list双向绑定，仅传参不传原型
+            todoList.push({title: this.list.title, completed: this.list.completed});
+            this.list.title = "";
+            // console.log(todoList);
         }
     }
 }

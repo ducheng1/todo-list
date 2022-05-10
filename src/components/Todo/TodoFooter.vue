@@ -1,35 +1,46 @@
 <template>
     <div id="container">
-        <div id="status">已完成 {{ completed }} 个 / 共 {{ all }} 个</div>
+        <div id="status">已完成 {{ completedNum }} 个 / 共 {{ totalNum }} 个</div>
         <div id="completed-div" v-if="haveQuestCompleted">
-            <el-button type="primary">清除已完成任务</el-button>
+            <el-button type="primary" @click="clearDone">清除已完成任务</el-button>
         </div>
     </div>
 </template>
 
 <script>
-import {useStore} from "vuex";
 import store from "@/store";
 
 export default {
     name: 'navFooter',
     data() {
         return {
-            completed: store.state.completedNum,
-            all: store.state.todoList.length,
             haveQuestCompleted: true
         }
     },
-    setup() {
-        const store = useStore();
-        let list = store.state.todoList;
-        for (let i = 0; i < list.length; i++) {
-            if (list[i].completed)
-                store.state.completedNum++;
+    computed: {
+        completedNum: function () {
+            return this.$store.state.completedNum;
+        },
+        totalNum: function () {
+            return this.$store.state.todoList.length;
         }
-        // console.log(store.state.todoList.length)
-        return list;
     },
+    methods: {
+        clearDone: function () {
+            let completedNum = 0;
+            let completedIndex = [];
+            for (let i = 0; i < store.state.todoList.length; i++) {
+                if (store.state.todoList[i].completed) {
+                    completedIndex.push(i);
+                    completedNum++;
+                }
+            }
+            for (let i = completedIndex.length - 1; i >= 0; i--) {
+                store.state.todoList.splice(completedIndex[i], 1);
+            }
+            store.state.completedNum -= completedNum;
+        },
+    }
 }
 </script>
 

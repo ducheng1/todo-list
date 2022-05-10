@@ -1,19 +1,26 @@
 <template>
     <div id="container">
-        <div v-for="(item, index) in list" :key="index" class="todo-item">
+        <div v-for="(item, index) in list" :key="index" class="todo">
             <el-row>
                 <el-col :span="2"></el-col>
                 <el-col :span="12">
-                    <span class="todo-index">{{ index + 1 }}</span>
-                    <span class="todo-title">{{ item.title }}</span>
+                    <div class="todo-item">
+                        <div class="todo-index">{{ index + 1 }}</div>
+                        <div class="todo-title" :class="{done:item.completed}">{{ item.title }}</div>
+                    </div>
                 </el-col>
-                <el-col :span="4">
-                    <el-button type="warning" v-if="item.completed">重做</el-button>
-                    <el-button type="success" v-else>完成</el-button>
+                <el-col :span="3">
+                    <el-button type="warning" v-if="item.completed" @click="redoItem(index)">重做</el-button>
+                    <el-button type="success" v-else @click="checkItem(index)">完成</el-button>
                 </el-col>
                 <el-col :span="1"></el-col>
                 <el-col :span="4">
-                    <el-button type="danger">删除</el-button>
+                    <el-popconfirm title="确认删除待办项？" confirm-button-text="是" cancel-button-text="否"
+                                   @confirm="deleteItem(index)">
+                        <template #reference>
+                            <el-button type="danger">删除</el-button>
+                        </template>
+                    </el-popconfirm>
                 </el-col>
                 <el-col :span="2"></el-col>
             </el-row>
@@ -22,20 +29,42 @@
 </template>
 
 <script>
-import {useStore} from "vuex";
 import store from "@/store";
+import {ElNotification} from "element-plus";
 
+const todoList = store.state.todoList;
 export default {
     name: 'navMain',
     data() {
         return {
-            list: store.state.todoList
+            list: todoList,
         }
     },
-    setup() {
-        const store = useStore();
-        // console.log(store.state.todoList);
-        return store.state.todoList
+    methods: {
+        deleteItem: function (index) {
+            ElNotification({
+                title: "待办项已删除",
+                type: "success"
+            });
+            todoList.pop(index);
+            store.state.completedNum--;
+        },
+        checkItem: function (index) {
+            ElNotification({
+                title: "待办项已完成",
+                type: "success"
+            });
+            todoList[index].completed = true;
+            store.state.completedNum++;
+        },
+        redoItem: function (index) {
+            ElNotification({
+                title: "待办项已重做",
+                type: "warning"
+            });
+            todoList[index].completed = false;
+            store.state.completedNum--;
+        }
     }
 }
 </script>
@@ -45,14 +74,27 @@ export default {
     margin: 1rem 0;
 }
 
-.todo-item {
+.todo {
     padding: 1rem 0;
     text-align: left;
 }
 
 .todo-index {
-    margin-right: 0.5rem;
     font-size: 2rem;
+    display: inline;
+}
+
+.todo-title {
+    /*border: 1px black solid;*/
+    display: inline;
+    margin-right: 1rem;
+    margin-left: 0.5rem;
+    padding-top: -1rem;
+}
+
+.done {
+    text-decoration: line-through;
+    color: darkgray;
 }
 </style>
 
