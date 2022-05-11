@@ -4,11 +4,11 @@
 
 ### 项目主题
 
-todoList,countdown
+待办事项，倒计时，用户登录注册（Session实现）
 
 ### 项目简介
 
-以vue3.x作为主要框架，使用element-plus+vant 3+font-awesome美化界面，使用vue-router实现单页应用的构建，使用babel.js+webpack实现模块管理与项目封装。
+以vue3.x作为主要框架，使用element-plus+vant 3美化界面，使用vue-router实现单页应用的构建，使用vuex与session实现状态管理，使用webpack实现模块管理与项目封装。
 
 #### 主要前端框架
 
@@ -26,6 +26,7 @@ todoList,countdown
 - vuex 官方文档：https://vuex.vuejs.org/zh/
 - babel.js 官方文档：https://www.babeljs.cn/
 - webpack 官方文档：https://www.webpackjs.com/
+- session
 
 ### 项目构建
 

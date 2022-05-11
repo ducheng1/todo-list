@@ -14,7 +14,9 @@
 <script>
 import store from "@/store";
 import {ElNotification} from "element-plus";
+import sessionStorage from "@/assets/sessionStorage.js";
 
+const todoList = store.state.todoList;
 export default {
     name: 'navHeader',
     data() {
@@ -36,11 +38,24 @@ export default {
                 });
                 return;
             }
-            const todoList = store.state.todoList;
             // 避免list双向绑定，仅传参不传原型
             todoList.push({title: this.list.title, completed: this.list.completed});
+            sessionStorage.setTodoList(todoList);
             this.list.title = "";
             // console.log(todoList);
+        }
+    },
+    setup() {
+        // console.log(sessionStorage.getTodoList('todoList'));
+        // console.log(todoList);
+        // 将当前todoList内容存到session中，防止刷新清空vuex状态
+        sessionStorage.setTodoList(todoList);
+        if (sessionStorage.getTodoList() != null) {
+            todoList.splice(0);
+            for (let i = 0; i < sessionStorage.getTodoList().length; i++) {
+                // console.log(sessionStorage.getTodoList()[i]);
+                todoList.push(sessionStorage.getTodoList()[i]);
+            }
         }
     }
 }

@@ -9,6 +9,8 @@
 
 <script>
 import store from "@/store";
+import {ElNotification} from "element-plus";
+import sessionStorage from "@/assets/sessionStorage";
 
 export default {
     name: 'navFooter',
@@ -29,16 +31,24 @@ export default {
         clearDone: function () {
             let completedNum = 0;
             let completedIndex = [];
-            for (let i = 0; i < store.state.todoList.length; i++) {
-                if (store.state.todoList[i].completed) {
+            let todoList = store.state.todoList;
+            for (let i = 0; i < todoList.length; i++) {
+                if (todoList[i].completed) {
                     completedIndex.push(i);
                     completedNum++;
                 }
             }
             for (let i = completedIndex.length - 1; i >= 0; i--) {
-                store.state.todoList.splice(completedIndex[i], 1);
+                todoList.splice(completedIndex[i], 1);
             }
             store.state.completedNum -= completedNum;
+            ElNotification({
+                title: '已清除已完成任务',
+                message: '本次共清除' + completedNum + '个',
+                type: 'success',
+            });
+            sessionStorage.setCompletedNum(completedNum);
+            sessionStorage.setTodoList(todoList);
         },
     }
 }

@@ -31,6 +31,7 @@
 <script>
 import store from "@/store";
 import {ElNotification} from "element-plus";
+import sessionStorage from "@/assets/sessionStorage";
 
 const todoList = store.state.todoList;
 export default {
@@ -46,8 +47,15 @@ export default {
                 title: "待办项已删除",
                 type: "success"
             });
-            todoList.pop(index);
-            store.state.completedNum--;
+            todoList.splice(index, 1);
+            let a = 0;
+            for (let i = 0; i < todoList.length; i++) {
+                if (todoList[i].completed)
+                    a++;
+            }
+            store.state.completedNum = a;
+            sessionStorage.setTodoList(todoList);
+            sessionStorage.setCompletedNum(a);
         },
         checkItem: function (index) {
             ElNotification({
@@ -55,7 +63,14 @@ export default {
                 type: "success"
             });
             todoList[index].completed = true;
-            store.state.completedNum++;
+            let a = 0;
+            for (let i = 0; i < todoList.length; i++) {
+                if (todoList[i].completed)
+                    a++;
+            }
+            store.state.completedNum = a;
+            sessionStorage.setTodoList(todoList);
+            sessionStorage.setCompletedNum(a);
         },
         redoItem: function (index) {
             ElNotification({
@@ -63,7 +78,19 @@ export default {
                 type: "warning"
             });
             todoList[index].completed = false;
-            store.state.completedNum--;
+            let a = 0;
+            for (let i = 0; i < todoList.length; i++) {
+                if (todoList[i].completed)
+                    a++;
+            }
+            store.state.completedNum = a;
+            sessionStorage.setTodoList(todoList);
+            sessionStorage.setCompletedNum(a);
+        }
+    },
+    setup() {
+        if (sessionStorage.getCompletedNum() != null) {
+            store.state.completedNum = sessionStorage.getCompletedNum();
         }
     }
 }
