@@ -2,14 +2,14 @@
     <div id="container">
         <div v-for="(item, index) in list" :key="index" class="todo">
             <el-row>
-                <el-col :span="2"></el-col>
-                <el-col :span="12">
+                <el-col :span="1"></el-col>
+                <el-col :span="13">
                     <div class="todo-item">
                         <div class="todo-index">{{ index + 1 }}</div>
                         <div class="todo-title" :class="{done:item.completed}">{{ item.title }}</div>
                     </div>
                 </el-col>
-                <el-col :span="3">
+                <el-col :span="4">
                     <el-button type="warning" v-if="item.completed" @click="redoItem(index)">重做</el-button>
                     <el-button type="success" v-else @click="checkItem(index)">完成</el-button>
                 </el-col>

@@ -19,5 +19,15 @@ export default {
     },
     setCompletedNum(val) {
         sessionStorage.setItem('todoDoneNum', JSON.stringify(val));
+    },
+    setUser(val) {
+        sessionStorage.setItem('userInfo', JSON.stringify(val));
+    },
+    getUser() {
+        try {
+            return JSON.parse(sessionStorage.getItem("userInfo"));
+        } catch (err) {
+            return null;
+        }
     }
 }
