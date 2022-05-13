@@ -1,4 +1,4 @@
-import {createStore} from 'vuex'
+import { createStore } from 'vuex'
 // vuex持久化存储
 
 export default createStore({
@@ -9,6 +9,12 @@ export default createStore({
                 completed: false
             }
         ],
-        completedNum: 0
+        completedNum: 0,
+        userInfo: [
+            {
+                username: 'test',
+                password: 'test'
+            }
+        ]
     },
 })

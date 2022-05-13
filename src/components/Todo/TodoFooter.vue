@@ -47,7 +47,7 @@ export default {
                 message: '本次共清除' + completedNum + '个',
                 type: 'success',
             });
-            sessionStorage.setCompletedNum(store.state.completedNum);
+            sessionStorage.setCompletedNum(completedNum);
             sessionStorage.setTodoList(todoList);
         },
     }
