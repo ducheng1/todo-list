@@ -3,11 +3,11 @@
         <div v-for="(item, index) in list" :key="index" class="todo">
             <el-row>
                 <el-col :span="1"></el-col>
-                <el-col :span="13">
-                    <div class="todo-item">
-                        <div class="todo-index">{{ index + 1 }}</div>
-                        <div class="todo-title" :class="{done:item.completed}">{{ item.title }}</div>
-                    </div>
+                <el-col :span="2">
+                    <div class="todo-index">{{ index + 1 }}</div>
+                </el-col>
+                <el-col :span="11">
+                    <div class="todo-title" :class="{done:item.completed}">{{ item.title }}</div>
                 </el-col>
                 <el-col :span="4">
                     <el-button type="warning" v-if="item.completed" @click="redoItem(index)">重做</el-button>
@@ -25,6 +25,7 @@
                 <el-col :span="2"></el-col>
             </el-row>
         </div>
+        <el-backtop :right="50" :bottom="60" :visibility-height="80" style="height: 40px;width: 40px;"/>
     </div>
 </template>
 
@@ -45,7 +46,9 @@ export default {
         deleteItem: function (index) {
             ElNotification({
                 title: "待办项已删除",
-                type: "success"
+                type: "success",
+                offset: 50,
+                duration: 1000
             });
             todoList.splice(index, 1);
             let a = 0;
@@ -60,7 +63,9 @@ export default {
         checkItem: function (index) {
             ElNotification({
                 title: "待办项已完成",
-                type: "success"
+                type: "success",
+                offset: 50,
+                duration: 1000
             });
             todoList[index].completed = true;
             let a = 0;
@@ -75,7 +80,9 @@ export default {
         redoItem: function (index) {
             ElNotification({
                 title: "待办项已重做",
-                type: "warning"
+                type: "warning",
+                offset: 50,
+                duration: 1000
             });
             todoList[index].completed = false;
             let a = 0;
@@ -102,21 +109,28 @@ export default {
 }
 
 .todo {
+    border-bottom: 1px solid #ccc;
     padding: 1rem 0;
     text-align: left;
 }
 
+.todo:first-child {
+    border-top: 1px solid #ccc;
+}
+
 .todo-index {
     font-size: 2rem;
-    display: inline;
+    color: cadetblue;
+    text-shadow: 1px 1px 5px greenyellow;
 }
 
 .todo-title {
     /*border: 1px black solid;*/
-    display: inline;
     margin-right: 1rem;
     margin-left: 0.5rem;
-    padding-top: -1rem;
+    overflow: hidden;
+    line-height: 2.2rem;
+    display: inline;
 }
 
 .done {

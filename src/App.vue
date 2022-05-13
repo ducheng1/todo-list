@@ -1,5 +1,6 @@
 <template>
     <el-container>
+
         <el-header>
             <van-notice-bar
                 mode="closeable"
@@ -8,9 +9,15 @@
                 text="我也不知道说点什么，这一条消息通知栏只是拿来凑数的。"
             />
         </el-header>
+
         <el-main>
-            <router-view/>
+            <router-view v-slot="{ Component }">
+                <transition name="fade" mode="out-in">
+                    <component :is="Component"></component>
+                </transition>
+            </router-view>
         </el-main>
+
         <el-footer>
             <van-tabbar v-model="active" route>
                 <!--todolist-->
@@ -29,9 +36,7 @@
                 <van-tabbar-item replace to="/about" name="about" icon="info-o">
                     About
                 </van-tabbar-item>
-
             </van-tabbar>
-
         </el-footer>
     </el-container>
 </template>
@@ -40,16 +45,59 @@
 import {ref} from "vue";
 
 export default {
+    name: "App",
+    provide() {
+        return {
+            reload: this.reload
+        }
+    },
     data() {
         return {
             active: ref('todo'),
+            isRouterAlive: true
         }
     },
+    methods: {
+        reload() {
+            this.isRouterAlive = false;
+            this.$nextTick(function () {
+                this.isRouterAlive = true;
+            })
+        }
+    }
 }
 </script>
 
 <style scoped>
 * {
     text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.fade-enter-active {
+    opacity: 0;
+    transition: opacity .25s;
+}
+
+.fade-enter {
+    opacity: 0;
+}
+
+.fade-enter-to {
+    opacity: 1;
+}
+
+.fade-leave {
+    opacity: 1;
+}
+
+.fade-leave-active {
+    opacity: 0;
+    transition: opacity .25s;
+}
+
+.fade-leave-to {
+    opacity: 0;
 }
 </style>

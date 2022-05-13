@@ -12,13 +12,13 @@ export default {
     },
     getCompletedNum() {
         try {
-            return JSON.parse(sessionStorage.getItem('todoDoneNum').toString());
+            return JSON.parse(sessionStorage.getItem('completedNum').toString());
         } catch (err) {
             return null;
         }
     },
     setCompletedNum(val) {
-        sessionStorage.setItem('todoDoneNum', JSON.stringify(val));
+        sessionStorage.setItem('completedNum', JSON.stringify(val));
     },
     setUser(val) {
         sessionStorage.setItem('userInfo', JSON.stringify(val));

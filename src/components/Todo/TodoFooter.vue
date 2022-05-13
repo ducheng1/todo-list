@@ -46,8 +46,10 @@ export default {
                 title: '已清除已完成任务',
                 message: '本次共清除' + completedNum + '个',
                 type: 'success',
+                offset: 50,
+                duration: 1000
             });
-            sessionStorage.setCompletedNum(completedNum);
+            sessionStorage.setCompletedNum(0);
             sessionStorage.setTodoList(todoList);
         },
     }

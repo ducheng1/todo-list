@@ -1,9 +1,9 @@
 <template>
-  <div class="home">
-    <todo-header />
-    <todo-footer />
-    <todo-main />
-  </div>
+    <div class="home">
+        <todo-header/>
+        <todo-footer style="margin-top: 1rem"/>
+        <todo-main/>
+    </div>
 </template>
 
 <script>
@@ -12,15 +12,15 @@ import TodoMain from "@/components/Todo/TodoMain.vue";
 import TodoFooter from "@/components/Todo/TodoFooter.vue";
 
 export default {
-  name: "HomeView",
-  data() {
-    return {};
-  },
-  components: {
-    TodoHeader,
-    TodoMain,
-    TodoFooter,
-  },
+    name: "HomeView",
+    data() {
+        return {};
+    },
+    components: {
+        TodoHeader,
+        TodoMain,
+        TodoFooter,
+    },
 };
 </script>
 
