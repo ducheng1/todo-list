@@ -5,6 +5,7 @@ import AboutView from "../views/AboutView.vue"
 import UserView from "../views/UserView.vue"
 import UserLogin from "@/components/User/UserLogin.vue"
 import UserRegister from "@/components/User/UserRegister.vue"
+import UserInfo from "../views/UserInfoView.vue"
 
 const routes = [
     // 主页 todo
@@ -41,6 +42,12 @@ const routes = [
         path: '/register',
         name: 'register',
         component: UserRegister
+    },
+    // 用户信息
+    {
+        path: '/userinfo',
+        name: 'userinfo',
+        component: UserInfo
     }
 ]
 

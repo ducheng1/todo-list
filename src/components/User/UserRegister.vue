@@ -3,13 +3,13 @@
         <div class="title">用户注册</div>
         <el-form :model="form" label-width="100px" class="registerForm">
             <el-form-item>
-                <el-input v-model="form.username" placeholder="用户名"></el-input>
+                <el-input v-model="form.username" type="text" placeholder="用户名"></el-input>
             </el-form-item>
             <el-form-item>
-                <el-input v-model="form.password" placeholder="密码"></el-input>
+                <el-input v-model="form.password" type="password" placeholder="密码"></el-input>
             </el-form-item>
             <el-form-item>
-                <el-input v-model="form.email" placeholder="邮箱"></el-input>
+                <el-input v-model="form.email" type="text" placeholder="邮箱"></el-input>
             </el-form-item>
             <el-form-item>
                 <el-input v-model="inputVerifyCode" placeholder="验证码" style="width: 150px"></el-input>
@@ -29,6 +29,8 @@
 <script>
 import VerifyCode from "@/components/User/VerifyCode";
 import {ElNotification} from "element-plus";
+import sessionStorage from "@/assets/sessionStorage";
+import store from "@/store";
 
 export default {
     name: "userRegister",
@@ -41,17 +43,58 @@ export default {
                 username: "",
                 password: "",
                 email: "",
-                verifyCode: ""
             },
-            inputVerifyCode: ""
+            inputVerifyCode: "",
+            verifyCode: "",
         }
     },
     methods: {
         onSubmit: function () {
+            // 注册逻辑
+            // 验证码错误
             if (this.inputVerifyCode.toUpperCase() !== this.verifyCode) {
                 ElNotification({
                     type: "error",
                     title: "验证码错误！",
+                    message: "请重新输入",
+                    offset: 50,
+                    duration: 1000
+                });
+                this.inputVerifyCode = "";
+                this.$refs["ref_verify-code"].draw();
+                return;
+            }
+            // 用户名已存在
+            for (let i = 0; i < store.state.userInfo.length; i++) {
+                if (this.form.username === store.state.userInfo[i].username) {
+                    ElNotification({
+                        type: "error",
+                        title: "用户名已存在！",
+                        message: "请重新输入",
+                        offset: 50,
+                        duration: 1000
+                    });
+                    this.inputVerifyCode = "";
+                    this.$refs["ref_verify-code"].draw();
+                    return;
+                }
+            }
+            // 邮箱验证
+            if (this.form.email === "") {
+                ElNotification({
+                    type: "error",
+                    title: "请输入邮箱！！",
+                    message: "请重新输入",
+                    offset: 50,
+                    duration: 1000
+                });
+                this.inputVerifyCode = "";
+                this.$refs["ref_verify-code"].draw();
+                return;
+            } else if (!/^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/.test(this.form.email)) {
+                ElNotification({
+                    type: "warning",
+                    title: "邮箱格式有误！",
                     message: "请重新输入",
                     offset: 50,
                     duration: 1000
@@ -67,6 +110,10 @@ export default {
                 offset: 50,
                 duration: 1000
             });
+            let user = store.state.userInfo;
+            user.push({username: this.form.username, password: this.form.password, email: this.form.email});
+            // console.log(user);
+            sessionStorage.setUser(user);
             this.$router.push("/login")
         },
         changeCode: function (val) {

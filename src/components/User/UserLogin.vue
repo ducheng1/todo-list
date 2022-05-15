@@ -3,10 +3,10 @@
         <div class="title">账号密码登录</div>
         <el-form :model="form" label-width="100px" class="loginForm">
             <el-form-item>
-                <el-input v-model="form.username" placeholder="用户名"></el-input>
+                <el-input v-model="form.username" type="text" placeholder="用户名"></el-input>
             </el-form-item>
             <el-form-item>
-                <el-input v-model="form.password" placeholder="密码"></el-input>
+                <el-input v-model="form.password" type="password" placeholder="密码"></el-input>
             </el-form-item>
             <el-form-item>
                 <el-input v-model="inputVerifyCode" placeholder="验证码" style="width: 150px"></el-input>
@@ -27,6 +27,7 @@
 import store from "@/store";
 import {ElNotification} from "element-plus";
 import VerifyCode from "@/components/User/VerifyCode";
+import sessionStorage from "@/assets/sessionStorage";
 
 export default {
     name: "UserLogin",
@@ -41,6 +42,9 @@ export default {
             },
             inputVerifyCode: ""
         };
+    },
+    setup() {
+        store.state.userInfo = sessionStorage.getUser();
     },
     methods: {
         onSubmit: function () {
@@ -117,6 +121,10 @@ export default {
                 offset: 50,
                 duration: 1000
             });
+            store.state.hasLogin = true;
+            sessionStorage.setHasLogin(store.state.hasLogin);
+            store.state.currentUser = this.form.username;
+            sessionStorage.setCurrentUser(store.state.currentUser);
             this.$router.push("/");
         },
         changeCode: function (val) {

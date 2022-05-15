@@ -13,8 +13,11 @@ export default createStore({
         userInfo: [
             {
                 username: 'test',
-                password: 'test'
+                password: 'test',
+                email: 'test@test.com'
             }
-        ]
+        ],
+        hasLogin: false,
+        currentUser: ""
     },
 })

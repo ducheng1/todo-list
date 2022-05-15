@@ -54,12 +54,12 @@ export default {
     },
     beforeCreate() {
         // console.log(todoList);
+        // 将当前todoList内容存到session中，防止刷新清空vuex状态
         sessionStorage.setTodoList(todoList);
     },
     setup() {
         // console.log(sessionStorage.getTodoList('todoList'));
         // console.log(todoList);
-        // 将当前todoList内容存到session中，防止刷新清空vuex状态
         // sessionStorage.setTodoList(todoList);
         if (sessionStorage.getTodoList() != null) {
             todoList.splice(0);
