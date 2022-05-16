@@ -4,7 +4,7 @@
 
 ### 项目主题
 
-待办事项，倒计时，用户登录注册（Session实现）
+待办事项，倒计时，用户登录注册
 
 ### 项目简介
 
@@ -26,7 +26,6 @@
 - vuex 官方文档：https://vuex.vuejs.org/zh/
 - babel.js 官方文档：https://www.babeljs.cn/
 - webpack 官方文档：https://www.webpackjs.com/
-- session-storage
 
 ### 项目构建
 
