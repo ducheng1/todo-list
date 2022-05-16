@@ -26,7 +26,7 @@
 - vuex 官方文档：https://vuex.vuejs.org/zh/
 - babel.js 官方文档：https://www.babeljs.cn/
 - webpack 官方文档：https://www.webpackjs.com/
-- session
+- session-storage
 
 ### 项目构建
 
