@@ -24,10 +24,6 @@
                 <van-tabbar-item replace to="/" name="todo" icon="certificate">
                     Todo
                 </van-tabbar-item>
-                <!--countdown-->
-                <van-tabbar-item replace to="/countdown" name="countdown" icon="descending">
-                    Countdown
-                </van-tabbar-item>
                 <!--user login and register-->
                 <van-tabbar-item replace to="/login" name="user" icon="contact">
                     User
@@ -59,6 +55,16 @@ export default {
     text-align: center;
     margin: 0;
     padding: 0;
+}
+
+.van-tabbar{
+    margin: 0 auto;
+    max-width: 500px;    
+}
+
+.van-tabbar--fixed{
+    position: fixed !important;
+    bottom: 0 !important;
 }
 
 .fade-enter-active {

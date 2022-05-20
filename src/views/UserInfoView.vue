@@ -5,7 +5,6 @@
         <div class="userAction">
             <van-cell title="个人信息" is-link icon="info-o" to="/personalinfo"></van-cell>
             <van-cell title="我的Todo" is-link to="/" icon="certificate"></van-cell>
-            <van-cell title="我的CountDown" is-link to="/countdown" icon="descending"></van-cell>
             <van-cell title="设置" is-link @click="settings" icon="setting-o"></van-cell>
             <van-cell title="将APP分享给朋友" @click="showShare = true" is-link icon="share-o"/>
             <van-share-sheet
@@ -52,7 +51,7 @@ export default {
         onSelect: function () {
             store.state.hasLogin = false;
             sessionStorage.setHasLogin(false);
-            this.$router.push("/");
+            this.$router.replace("/login");
         },
         changeHead: function () {
             Dialog.alert({

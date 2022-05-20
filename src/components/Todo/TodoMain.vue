@@ -125,12 +125,12 @@ export default {
 }
 
 .todo-title {
-    /*border: 1px black solid;*/
-    margin-right: 1rem;
-    margin-left: 0.5rem;
+    /* border: 1px black solid; */
+    /* margin-right: 1rem; */
     overflow: hidden;
     line-height: 2.2rem;
     display: inline;
+    white-space: nowrap;
 }
 
 .done {

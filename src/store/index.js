@@ -24,6 +24,12 @@ export default createStore({
                 password: '',
                 email: ''
             },
+        ],
+        countdownList: [
+            {
+                title: '考研',
+                time: new Date(2022,11,25)
+            }
         ]
     },
 })
