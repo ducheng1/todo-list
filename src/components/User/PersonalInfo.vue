@@ -39,6 +39,6 @@ export default {
 
 <style scoped>
 .van-cell {
-    margin-left: -2rem;
+    max-width: 80%;
 }
 </style>

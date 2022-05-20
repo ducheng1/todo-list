@@ -25,7 +25,7 @@
         <verify-code
           ref="ref_verify-code"
           @change="changeCode"
-          style="height: 32px; margin-left: 1.5rem"
+          style="height: 32px; margin-left: 1rem"
         ></verify-code>
       </el-form-item>
       <el-form-item>
