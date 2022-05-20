@@ -15,9 +15,15 @@ export default createStore({
                 username: 'test',
                 password: 'test',
                 email: 'test@test.com'
-            }
+            },
         ],
         hasLogin: false,
-        currentUser: ""
+        currentUser: [
+            {
+                username: '',
+                password: '',
+                email: ''
+            },
+        ]
     },
 })

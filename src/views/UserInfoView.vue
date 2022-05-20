@@ -3,6 +3,7 @@
         <el-image :src="head" lazy @click="changeHead"></el-image>
         <div class="userInfo">您好，{{ username }}</div>
         <div class="userAction">
+            <van-cell title="个人信息" is-link icon="info-o" to="/personalinfo"></van-cell>
             <van-cell title="我的Todo" is-link to="/" icon="certificate"></van-cell>
             <van-cell title="我的CountDown" is-link to="/countdown" icon="descending"></van-cell>
             <van-cell title="设置" is-link @click="settings" icon="setting-o"></van-cell>
@@ -36,7 +37,7 @@ export default {
                 }
             ],
             head: require("/public/1.jpeg"),
-            username: store.state.currentUser,
+            username: store.state.currentUser.username,
             showShare: false,
             options: [
                 {name: '微信', icon: 'wechat'},

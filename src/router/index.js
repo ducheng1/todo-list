@@ -3,9 +3,9 @@ import TodoView from '../views/TodoView.vue'
 import CountdownView from '../views/CountdownView.vue'
 import AboutView from "../views/AboutView.vue"
 import UserView from "../views/UserView.vue"
-import UserLogin from "@/components/User/UserLogin.vue"
 import UserRegister from "@/components/User/UserRegister.vue"
 import UserInfo from "../views/UserInfoView.vue"
+import PersonalInfo from "@/components/User/PersonalInfo";
 
 const routes = [
     // 主页 todo
@@ -26,17 +26,11 @@ const routes = [
         name: 'about',
         component: AboutView
     },
-    // 用户
-    {
-        path: '/user',
-        name: 'user',
-        component: UserView
-    },
     // user登录注册路由
     {
         path: '/login',
         name: 'login',
-        component: UserLogin
+        component: UserView
     },
     {
         path: '/register',
@@ -48,6 +42,12 @@ const routes = [
         path: '/userinfo',
         name: 'userinfo',
         component: UserInfo
+    },
+    // 个人信息
+    {
+        path: '/personalinfo',
+        name: 'personalinfo',
+        component: PersonalInfo
     }
 ]
 

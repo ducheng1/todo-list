@@ -43,11 +43,9 @@ export default {
             inputVerifyCode: ""
         };
     },
-    setup() {
-        store.state.userInfo = sessionStorage.getUser();
-    },
     methods: {
         onSubmit: function () {
+            store.state.userInfo = sessionStorage.getUser();
             // 用户名登录逻辑
             // 验证码错误
             if (this.inputVerifyCode.toUpperCase() !== this.verifyCode) {
@@ -123,7 +121,7 @@ export default {
             });
             store.state.hasLogin = true;
             sessionStorage.setHasLogin(store.state.hasLogin);
-            store.state.currentUser = this.form.username;
+            store.state.currentUser = {username: this.form.username, password: this.form.password};
             sessionStorage.setCurrentUser(store.state.currentUser);
             this.$router.push("/");
         },

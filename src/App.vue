@@ -29,7 +29,7 @@
                     Countdown
                 </van-tabbar-item>
                 <!--user login and register-->
-                <van-tabbar-item replace to="/user" name="user" icon="contact">
+                <van-tabbar-item replace to="/login" name="user" icon="contact">
                     User
                 </van-tabbar-item>
                 <!--about me-->

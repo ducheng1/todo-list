@@ -50,6 +50,8 @@ export default {
     },
     methods: {
         onSubmit: function () {
+            console.log(store.state.userInfo);
+            console.log(store.state);
             // 注册逻辑
             // 验证码错误
             if (this.inputVerifyCode.toUpperCase() !== this.verifyCode) {
@@ -114,7 +116,7 @@ export default {
             user.push({username: this.form.username, password: this.form.password, email: this.form.email});
             // console.log(user);
             sessionStorage.setUser(user);
-            this.$router.push("/login")
+            this.$router.push("/login");
         },
         changeCode: function (val) {
             this.verifyCode = val;
