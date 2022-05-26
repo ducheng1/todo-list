@@ -53,6 +53,7 @@ export default {
             sessionStorage.setHasLogin(false);
             this.$router.replace("/login");
         },
+        // 修改头像
         changeHead: function () {
             Dialog.alert({
                 title: "提示",
@@ -60,6 +61,7 @@ export default {
             }).then(() => {
             })
         },
+        // 分享
         onSelectShare: function (option) {
             Toast(
                 {
@@ -69,6 +71,7 @@ export default {
             );
             this.showShare = false;
         },
+        // 设置
         settings: function () {
             Dialog.alert({
                 title: "提示",

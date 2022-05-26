@@ -43,6 +43,7 @@ export default {
         }
     },
     methods: {
+        // 删除
         deleteItem: function (index) {
             ElNotification({
                 title: "待办项已删除",
@@ -60,6 +61,7 @@ export default {
             sessionStorage.setTodoList(todoList);
             sessionStorage.setCompletedNum(a);
         },
+        // 完成
         checkItem: function (index) {
             ElNotification({
                 title: "待办项已完成",
@@ -77,6 +79,7 @@ export default {
             sessionStorage.setTodoList(todoList);
             sessionStorage.setCompletedNum(a);
         },
+        // 重做
         redoItem: function (index) {
             ElNotification({
                 title: "待办项已重做",

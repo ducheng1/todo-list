@@ -12,6 +12,10 @@ const routes = [
     // 主页 todo
     {
         path: '/',
+        redirect: '/todo'
+    },
+    {
+        path: '/todo',
         name: 'todo',
         component: TodoView
     },
@@ -40,14 +44,15 @@ const routes = [
     },
     // 个人信息
     {
-        path: '/personalinfo',
-        name: 'personalinfo',
+        path: '/personalInfo',
+        name: 'personalInfo',
         component: PersonalInfo
     }
 ];
 
 const router = createRouter({
     history: createWebHistory(process.env.BASE_URL),
+
     routes
 });
 
@@ -60,7 +65,7 @@ router.beforeEach((to) => {
             offset: 50,
             duration: 1000
         });
-        return { 
+        return {
             name: 'login',
         }
     }

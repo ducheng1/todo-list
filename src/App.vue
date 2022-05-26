@@ -21,7 +21,7 @@
         <el-footer>
             <van-tabbar v-model="active" route>
                 <!--todolist-->
-                <van-tabbar-item replace to="/" name="todo" icon="certificate">
+                <van-tabbar-item replace to="/todo" name="todo" icon="certificate">
                     Todo
                 </van-tabbar-item>
                 <!--user login and register-->
@@ -53,18 +53,17 @@ export default {
 <style scoped>
 * {
     text-align: center;
-    margin: 0;
-    padding: 0;
 }
 
-.van-tabbar{
+.van-tabbar {
     margin: 0 auto;
-    max-width: 500px;    
+    max-width: 500px;
 }
 
-.van-tabbar--fixed{
+.van-tabbar--fixed {
     position: fixed !important;
     bottom: 0 !important;
+    /*left: auto !important;*/
 }
 
 .fade-enter-active {
